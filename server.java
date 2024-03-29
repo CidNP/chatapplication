@@ -35,21 +35,21 @@ class server{
     public void startReading(){
         //thread- read garirakhxa ani dinxa
         Runnable r1=()->{
-
             System.out.println("reader started...");
 
-
-            while(true){
-                try{
-                    String msg=br.readLine();
-                    if(msg.equals("exit")){
-                        System.out.println("Client terminated the chat");
-                        break;
-                    }
-                    System.out.println("Client: "+msg);
-                }catch(Exception e){
-                    e.printStackTrace();
+            try{
+                while(true){
+                        String msg=br.readLine();
+                        if(msg.equals("exit")){
+                            System.out.println("Client left the chat");
+                            socket.close();
+                            break;
+                        }
+                        System.out.println("Client: "+msg);
                 }
+            }catch(Exception e){
+                //e.printStackTrace();
+                System.out.println("Connection is Closed");
 
             }
 
@@ -62,21 +62,28 @@ class server{
         //thread- data user sanga linxa ani client lai pathauxa
         Runnable r2=()->{
             System.out.println("writer started...");
+            
+            try{
+                //loop until client exits it runs
+                while(!socket.isClosed()){
+                        BufferedReader br1=new BufferedReader(new InputStreamReader(System.in));
+                        String content=br1.readLine();
 
-            //loop until client exits it runs
-            while(true){
-                try{
+                        out.println(content);
+                        out.flush();
 
-                    BufferedReader br1=new BufferedReader(new InputStreamReader(System.in));
+                        if(content.equals("exit")){
+                            socket.close();
+                            break;
+                        }
 
-                    String content=br1.readLine();
-
-                    out.println(content);
-                    out.flush();
-                }catch(Exception e){
-                    e.printStackTrace();
                 }
+
+            }catch(Exception e){
+                //e.printStackTrace();
+                System.out.println("Connection is Closed");
             }
+
         };
 
         new Thread(r2).start();
