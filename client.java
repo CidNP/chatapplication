@@ -95,6 +95,7 @@ public class client extends JFrame{
         heading.setVerticalTextPosition(SwingConstants.BOTTOM);
         heading.setHorizontalAlignment(SwingConstants.CENTER); //heading center haldeko
         heading.setBorder(BorderFactory.createEmptyBorder(20,20,20,20)); //top,left,bottom,right
+        messageArea.setEditable(false); //message edit garna mildaina
         messageInput.setHorizontalAlignment(SwingConstants.CENTER); //textfield center
 
 
@@ -103,7 +104,8 @@ public class client extends JFrame{
 
         //adding the components to frame
         this.add(heading,BorderLayout.NORTH);
-        this.add(messageArea,BorderLayout.CENTER);
+        JScrollPane jScrollPane=new JScrollPane(messageArea);
+        this.add(jScrollPane,BorderLayout.CENTER);
         this.add(messageInput,BorderLayout.SOUTH);
 
 
