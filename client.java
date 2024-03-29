@@ -3,6 +3,8 @@ import java.io.*;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 public class client extends JFrame{
@@ -20,23 +22,61 @@ public class client extends JFrame{
     //constructor
     public client() {
         try{
-            //System.out.println("Sending request to server");
-            //socket=new Socket("127.0.0.1",7777); //ip and port
-            //System.out.println("Connection Successful.");
+            System.out.println("Sending request to server");
+            socket=new Socket("127.0.0.1",7777); //ip and port
+            System.out.println("Connection Successful.");
                 //Client to Server (read)
-            //br=new BufferedReader (new InputStreamReader(socket.getInputStream()));
+            br=new BufferedReader (new InputStreamReader(socket.getInputStream()));
                 //Server to Client (write)
-            //out=new PrintWriter(socket.getOutputStream());
+            out=new PrintWriter(socket.getOutputStream());
 
 
             CreateGUI();
-            //startReading();
+            handleEvents();
+            startReading();
             //startWriting();
 
 
         }catch(Exception e){
             //handle exception
         }
+    }
+
+
+    private void handleEvents(){
+
+        messageInput.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // TODO Auto-generated method stub
+                //System.out.println("Key Released!!!!"+ e.getKeyCode());
+                if(e.getKeyCode()==10){
+                    //System.out.println("You have pressed enter button");
+                    String contentToSend=messageInput.getText();
+                    messageArea.append("Me: "+contentToSend+"\n");
+                    out.println(contentToSend);
+                    out.flush();
+                    messageInput.setText("");
+                    messageInput.requestFocus();
+                }
+
+            }
+
+
+            
+
+        });
     }
 
     private void CreateGUI(){
@@ -55,6 +95,7 @@ public class client extends JFrame{
         heading.setVerticalTextPosition(SwingConstants.BOTTOM);
         heading.setHorizontalAlignment(SwingConstants.CENTER); //heading center haldeko
         heading.setBorder(BorderFactory.createEmptyBorder(20,20,20,20)); //top,left,bottom,right
+        messageInput.setHorizontalAlignment(SwingConstants.CENTER); //textfield center
 
 
         //frame layout set doing
@@ -83,10 +124,13 @@ public class client extends JFrame{
                     String msg=br.readLine();
                     if(msg.equals("exit")){
                     System.out.println("Server left the chat");
+                    JOptionPane.showMessageDialog(this,"Server Left the chat");
                     socket.close();
+                    messageInput.setEnabled(false);
                     break;
                     }
-                    System.out.println("Server: "+msg);
+                    //System.out.println("Server: "+msg);
+                    messageArea.append("Server: "+msg+"\n");
                 }
             }catch(Exception e){
                 //e.printStackTrace();
