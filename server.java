@@ -73,8 +73,6 @@ public class server extends JFrame{
                 }
 
             }
-
-
             
 
         });
@@ -82,7 +80,7 @@ public class server extends JFrame{
 
     private void CreateGUI(){
         //gui code
-        this.setTitle("Client Messenger[END]");
+        this.setTitle("Server Messenger[END]");
         this.setSize(600,700); //width, height
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,7 +128,7 @@ public class server extends JFrame{
                             messageInput.setEnabled(false);
                             break;
                         }
-                        messageArea.append("Server: "+msg+"\n");
+                        messageArea.append("Client: "+msg+"\n");
 
                         System.out.println("Client: "+msg);
                 }
