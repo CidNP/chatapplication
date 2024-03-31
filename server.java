@@ -73,8 +73,6 @@ public class server extends JFrame{
                 }
 
             }
-            
-
         });
     }
 
@@ -106,18 +104,13 @@ public class server extends JFrame{
         JScrollPane jScrollPane=new JScrollPane(messageArea);
         this.add(jScrollPane,BorderLayout.CENTER);
         this.add(messageInput,BorderLayout.SOUTH);
-
-
-
-
-
     }
 
     public void startReading(){
         //thread- read garirakhxa ani dinxa
         Runnable r1=()->{
             System.out.println("reader started...");
-
+            
             try{
                 while(true){
                         String msg=br.readLine();

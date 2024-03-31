@@ -90,7 +90,7 @@ public class client extends JFrame{
         heading.setFont(font);
         messageArea.setFont(font);
         messageInput.setFont(font);
-        heading.setIcon(new ImageIcon("logo.png"));
+        heading.setIcon(new ImageIcon("logo-client.png"));
         heading.setHorizontalTextPosition(SwingConstants.CENTER);
         heading.setVerticalTextPosition(SwingConstants.BOTTOM);
         heading.setHorizontalAlignment(SwingConstants.CENTER); //heading center haldeko
