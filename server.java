@@ -38,7 +38,6 @@ public class server extends JFrame{
         startWriting();
 
 
-
         } catch (Exception e){
         e.printStackTrace();
         }
@@ -78,7 +77,7 @@ public class server extends JFrame{
 
     private void CreateGUI(){
         //gui code
-        this.setTitle("Server Messenger[END]");
+        this.setTitle("Server Messenger");
         this.setSize(600,700); //width, height
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -81,7 +81,7 @@ public class client extends JFrame{
 
     private void CreateGUI(){
         //gui code
-        this.setTitle("Client Messenger[END]");
+        this.setTitle("Client Messenger");
         this.setSize(600,700); //width, height
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,10 +107,6 @@ public class client extends JFrame{
         JScrollPane jScrollPane=new JScrollPane(messageArea);
         this.add(jScrollPane,BorderLayout.CENTER);
         this.add(messageInput,BorderLayout.SOUTH);
-
-
-
-
 
     }
 
